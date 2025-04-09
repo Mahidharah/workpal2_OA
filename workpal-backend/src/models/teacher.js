@@ -1,7 +1,6 @@
 // src/models/teacher.js
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
-const Registered = require('./registered');
 
 // Define Teacher model
 const Teacher = sequelize.define('Teacher', {
