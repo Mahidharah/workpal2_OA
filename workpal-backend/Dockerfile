@@ -17,4 +17,4 @@ COPY . .
 EXPOSE 3000
 
 # Command to run your Node.js app inside the container
-CMD ["node", "server.js"]
+CMD ["node", "src/server.js"]
