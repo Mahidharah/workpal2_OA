@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  # MySQL database service
+  db:
+    build:
+      context: ./workpal-database     # Path to your MySQL Dockerfile and SQL files
+    environment:
+      - MYSQL_ROOT_PASSWORD=Password123!  # Root password (must not be empty)
+      - MYSQL_USER=workpal_user            # Application user
+      - MYSQL_PASSWORD=Password123!        # Application user password
+      - MYSQL_DATABASE=workpal          # Database name
+    ports:
+      - "3306:3306"  # Expose MySQL port on the host machine
+    volumes:
+      - ./workpal-database/database-workpal.sql:/docker-entrypoint-initdb.d/database-workpal.sql  # Copy SQL file
+    healthcheck:
+      test: mysqladmin ping -h 127.0.0.1 -u $$MYSQL_USER --password=$$MYSQL_PASSWORD
+      start_period: 5s
+      interval: 5s
+      timeout: 5s
+      retries: 55
+
+  # Node.js app service
+  node-app:
+    build:
+      context: ./workpal-backend  # Path to your Node.js app directory
+    ports:
+      - "3000:3000"  # Expose port 3000 on the host machine
+    environment:
+      - DB_HOST=db                # Link to MySQL service (use the service name)
+      - DB_USER=workpal_user             # MySQL username
+      - DB_PASSWORD=Password123!  # MySQL password
+      - DB_NAME=workpal        # Database name
+    depends_on:
+      db:
+        condition: service_healthy
