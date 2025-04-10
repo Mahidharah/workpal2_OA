@@ -58,23 +58,29 @@ INSERT INTO Student (email, is_suspended) VALUES
 ('studentjulia@gmail.com', FALSE);
 
 -- Register Students under Teachers
+/*
 INSERT INTO Registered (teacher_email, student_email, registration_date) VALUES
 ('teacherken@gmail.com', 'studentagnes@gmail.com', '2025-04-01'),
 ('teacherken@gmail.com', 'studentlucas@gmail.com', '2025-04-02'),
 ('teacherjoe@gmail.com', 'studentmiche@gmail.com', '2025-04-03'),
 ('teacherjoe@gmail.com', 'studentbob@gmail.com', '2025-04-04'),
 ('teachermary@gmail.com', 'studentjulia@gmail.com', '2025-04-05');
+*/
 
 -- Insert Notifications
+/*
 INSERT INTO Notification (sender_email, content) VALUES
 ('teacherken@gmail.com', 'Reminder: The next exam is on April 10th. Please study carefully!'),
 ('teacherjoe@gmail.com', 'Please check the updated assignment guidelines on the course portal.'),
 ('teachermary@gmail.com', 'Class tomorrow is cancelled due to weather conditions.');
+*/
 
 -- Insert Notification Recipients (students who receive notifications)
+/*
 INSERT INTO Notification_Recipients (notification_id, student_email) VALUES
 (1, 'studentagnes@gmail.com'),  -- Notification from teacherken
 (1, 'studentlucas@gmail.com'),  -- Notification from teacherken
 (2, 'studentmiche@gmail.com'),  -- Notification from teacherjoe
 (2, 'studentbob@gmail.com'),    -- Notification from teacherjoe
 (3, 'studentjulia@gmail.com');  -- Notification from teachermary
+*/
