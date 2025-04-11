@@ -1,4 +1,5 @@
 # Workpal 2 OA
+![Demo Video](https://github.com/Mahidharah/workpal2_OA/blob/main/docs/workpal_demo.m4v)
 
 ## Tech Stack
 
