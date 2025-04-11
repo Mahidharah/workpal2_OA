@@ -28,6 +28,7 @@
 The `workpal` database schema is designed to handle teachers, students, registrations, and notifications. 
 
 ER Diagram for reference:
+![ER Diagram Workpal Database](https://github.com/Mahidharah/workpal2_OA/blob/main/docs/Workpal_ER_Diagram.png)
 
 
 Below is a summary of the key tables:
