@@ -7,12 +7,27 @@ const sequelize = require('./config/database');
 const Teacher = require('./models/teacher');
 const Student = require('./models/student');
 const Registered = require('./models/registered');
+const Notification = require('./models/notification');
+const NotificationRecipients = require('./models/notificationRecipients');
 
 // Define Associations After Models Are Loaded
 Teacher.hasMany(Registered, { foreignKey: 'teacher_email' });
 Student.hasMany(Registered, { foreignKey: 'student_email' });
 Registered.belongsTo(Teacher, { foreignKey: 'teacher_email' });
 Registered.belongsTo(Student, { foreignKey: 'student_email' });
+
+// Associate Notification with Teacher (one-to-many)
+Notification.belongsTo(Teacher, { foreignKey: 'sender_email' });
+
+// Define the association between Notification and Notification_Recipients
+Notification.hasMany(NotificationRecipients, {
+  foreignKey: 'notification_id', // Foreign key in Notification_Recipients
+  onDelete: 'CASCADE',
+});
+
+// Associate Notification_Recipients with Notification and Student
+NotificationRecipients.belongsTo(Notification, { foreignKey: 'notification_id' });
+NotificationRecipients.belongsTo(Student, { foreignKey: 'student_email' });
 
 const app = express();
 app.use(express.json());

@@ -1,4 +1,6 @@
 const RegisteredRepository = require('../repositories/registeredRepository');
+const StudentRepository = require('../repositories/studentRepository');
+const sequelize = require('../config/database'); // Assuming you have a Sequelize instance
 
 class StudentService {
   static async getCommonStudents(teacherEmails) {
@@ -19,6 +21,41 @@ class StudentService {
     });
 
     return commonStudents;
+  }
+
+  static async suspendStudent(studentEmail) {
+    const transaction = await sequelize.transaction(); // Start a transaction
+
+    try {
+      // Find the student
+      const student = await StudentRepository.findByEmail(studentEmail);
+
+      if (!student) {
+        throw new Error('Student not found');
+      }
+
+      if (student.is_suspended) {
+        throw new Error('Student already suspended');
+      }
+
+      // Set the student's suspension status to true
+      student.is_suspended = true;
+
+      // Delete all registrations associated with the student within the same transaction
+      await RegisteredRepository.deleteByStudentEmail(student, transaction);
+
+      // Save the student object (set is_suspended = true)
+      await student.save({ transaction });
+
+      // Commit the transaction if everything is successful
+      await transaction.commit();
+      console.log(`Student ${studentEmail} has been suspended and registrations deleted.`);
+      return true;
+    } catch (error) {
+      // Rollback the transaction if anything goes wrong
+      await transaction.rollback();
+      throw error;
+    }
   }
 }
 

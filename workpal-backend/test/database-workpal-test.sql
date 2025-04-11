@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS Notification (
 );
 
 -- Notification_Recipients table (Many-to-Many Relationship between Notification and Student)
-CREATE TABLE IF NOT EXISTS Notification_Recipients (
+CREATE TABLE IF NOT EXISTS NotificationRecipients (
     notification_id INT,
     student_email VARCHAR(255),
     PRIMARY KEY (notification_id, student_email),
@@ -64,6 +64,7 @@ INSERT INTO Student (email, is_suspended) VALUES
 ('studentonlybeta@gmail.com', FALSE),
 ('suspendedstudent@gmail.com', TRUE),
 ('mentionedstudent@gmail.com', FALSE);
+('studentmiche@gmail.com', FALSE);
 
 -- Register Students
 -- commonstudent1 and commonstudent2 are registered under alpha and beta

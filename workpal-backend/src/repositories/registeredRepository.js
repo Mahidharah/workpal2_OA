@@ -28,6 +28,17 @@ class RegisteredRepository {
 
     return registrations.map(registration => registration.student_email);
   }
+
+  // Delete all registrations associated with a student
+  static async deleteByStudentEmail(student, transaction) {
+    try {
+      await Registered.destroy({
+        where: { student_email: student.email },
+        transaction});
+    } catch (error) {
+      throw new Error(`Error deleting registrations: ${error.message}`);
+    }
+  }
 }
 
 module.exports = RegisteredRepository;

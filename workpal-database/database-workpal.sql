@@ -35,10 +35,12 @@ CREATE TABLE IF NOT EXISTS Notification (
 );
 
 -- Notification_Recipients table (Many-to-Many Relationship between Notification and Student)
+-- Naming changed due to sequelize bug
 CREATE TABLE IF NOT EXISTS Notification_Recipients (
-    notification_id INT,
-    student_email VARCHAR(255),
-    PRIMARY KEY (notification_id, student_email),
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    notification_id INT NOT NULL,
+    student_email VARCHAR(255) NOT NULL,
+    UNIQUE KEY unique_recipient (notification_id, student_email),
     FOREIGN KEY (notification_id) REFERENCES Notification(id) ON DELETE CASCADE,
     FOREIGN KEY (student_email) REFERENCES Student(email) ON DELETE CASCADE
 );

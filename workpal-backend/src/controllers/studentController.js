@@ -20,6 +20,31 @@ class StudentController {
       return res.status(500).json({ error: 'An error occurred while retrieving common students.' });
     }
   }
+
+  static async suspendStudent(req, res) {
+    try {
+      const { student } = req.body;
+      if (!student) {
+        return res.status(400).json({ error: 'Student email is required' });
+      }
+  
+      await StudentService.suspendStudent(student);
+      return res.status(204).send();
+  
+    } catch (error) {
+      console.error('Error suspending student:', error.message);
+  
+      if (error.message === 'Student not found') {
+        return res.status(404).json({ error: error.message });
+      }
+  
+      if (error.message === 'Student already suspended') {
+        return res.status(409).json({ error: error.message }); // 409 Conflict
+      }
+  
+      return res.status(500).json({ error: 'Internal server error' });
+    }
+  }
 }
 
 module.exports = StudentController;
