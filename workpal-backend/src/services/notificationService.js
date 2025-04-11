@@ -22,13 +22,10 @@ class NotificationService {
     // Log the registered students for debugging
     console.log('Registered students:', registeredStudentsEmails);
   
-    // Get all students that are mentioned in the email
-    const mentionedStudentsEmails = mentionedEmails.map(email => email.slice(1));  // Remove '@' from the start of each email
-  
     // Combine both registered and mentioned students into a Set to ensure uniqueness
     const combinedStudentsEmails = new Set([
       ...registeredStudentsEmails,
-      ...mentionedStudentsEmails,
+      ...mentionedEmails,
     ]);
 
     // Log the combined students for debugging
