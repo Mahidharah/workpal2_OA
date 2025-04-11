@@ -1,4 +1,4 @@
-# Project Name
+# Workpal 2 OA
 
 ## Tech Stack
 
