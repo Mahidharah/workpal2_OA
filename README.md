@@ -86,7 +86,7 @@ To run the application, you need Docker and Docker Compose installed on your sys
 ### 1. Clone the Repository
 
 ```bash
-git clone [<repository-url>](https://github.com/Mahidharah/workpal2_OA.git)
+git clone https://github.com/Mahidharah/workpal2_OA.git
 cd workpal2_OA
 cd workpal-backend
 ```
