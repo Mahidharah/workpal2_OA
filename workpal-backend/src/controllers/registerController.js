@@ -26,7 +26,7 @@ class RegisterController {
         return res.status(404).json({ error: 'One or more students not found' });
       }
       if (error.message.includes('Students to be registered are suspended')) {
-        return res.status(400).json({ error: 'One or more students are suspended' });
+        return res.status(409).json({ error: 'One or more students are suspended' });
       }
       return res.status(500).json({ error: 'An error occurred while registering students.' });
     }

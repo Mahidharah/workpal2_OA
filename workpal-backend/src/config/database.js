@@ -1,6 +1,12 @@
 // src/config/database.js
 const { Sequelize } = require('sequelize');
-require('dotenv').config();
+const dotenv = require('dotenv');
+
+if (process.env.NODE_ENV === 'test') {
+  dotenv.config({ path: './test.env' });
+} else {
+  dotenv.config(); // defaults to .env
+}
 
 // Set up Sequelize connection
 const sequelize = new Sequelize({
