@@ -1,5 +1,6 @@
 const RegisteredRepository = require('../repositories/registeredRepository');
 const StudentRepository = require('../repositories/studentRepository');
+const TeacherRepository = require('../repositories/teacherRepository');
 const sequelize = require('../config/database'); // Assuming you have a Sequelize instance
 
 class StudentService {
@@ -7,6 +8,14 @@ class StudentService {
     // Ensure teacherEmails is an array
     if (!Array.isArray(teacherEmails)) {
       teacherEmails = [teacherEmails];
+    }
+
+    // Validate that at least one teacher email is provided
+    const teachers = await TeacherRepository.findByEmails(teacherEmails);
+
+    if (teachers.length < teacherEmails.length) {
+      // If not all teachers are found, throw an error
+      throw new Error('Teacher not found');
     }
 
     // Find the students for each teacher

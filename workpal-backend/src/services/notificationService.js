@@ -42,6 +42,11 @@ class NotificationService {
 
     // Log the eligible students for debugging
     console.log('Eligible students:', eligibleStudents.map(student => student.email));
+
+    // If no eligible students, throw an error
+    if (eligibleStudents.length === 0) {
+      throw new Error('Student not found');
+    }
   
     // Create notification and associate it with the recipients
     const transaction = await sequelize.transaction();
@@ -84,7 +89,9 @@ class NotificationService {
     } catch (error) {
       // Rollback the transaction if an error occurs
       await transaction.rollback();
-      throw new Error('Error creating notification or associating recipients: ' + error.message);
+      if (!error.messge.includes('Student not found')) {
+        throw new Error('Error creating notification or associating recipients: ' + error.message);
+      }
     }
   }  
 

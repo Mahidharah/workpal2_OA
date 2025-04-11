@@ -11,12 +11,15 @@ const Notification = require('./models/notification');
 const NotificationRecipients = require('./models/notificationRecipients');
 
 // Define Associations After Models Are Loaded
+
+// Teacher and Student have many-to-many relationship through Registered
 Teacher.hasMany(Registered, { foreignKey: 'teacher_email' });
 Student.hasMany(Registered, { foreignKey: 'student_email' });
 Registered.belongsTo(Teacher, { foreignKey: 'teacher_email' });
 Registered.belongsTo(Student, { foreignKey: 'student_email' });
 
-// Associate Notification with Teacher (one-to-many)
+// Notification and Teacher have one-to-many relationship through NotificationRecipients
+Teacher.hasMany(Notification, { foreignKey: 'sender_email' });
 Notification.belongsTo(Teacher, { foreignKey: 'sender_email' });
 
 // Define the association between Notification and Notification_Recipients

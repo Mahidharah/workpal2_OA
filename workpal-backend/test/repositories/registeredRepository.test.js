@@ -1,3 +1,4 @@
+// /test/repositories/registeredRepository.test.js
 const Registered = require('../../src/models/registered');
 const RegisteredRepository = require('../../src/repositories/registeredRepository');
 

@@ -63,6 +63,7 @@ INSERT INTO Student (email, is_suspended) VALUES
 ('studentonlyalpha@gmail.com', FALSE),
 ('studentonlybeta@gmail.com', FALSE),
 ('suspendedstudent@gmail.com', TRUE),
+('studenttobesuspended@gmail.com', FALSE),
 ('mentionedstudent@gmail.com', FALSE);
 ('studentmiche@gmail.com', FALSE);
 

@@ -7,6 +7,11 @@ class TeacherRepository {
     return Teacher.findOne({ where: { email } });
   }
 
+  // Find teachers by a list of emails
+  static async findByEmails(emails) {
+    return Teacher.findAll({ where: { email: emails } });
+  }
+
   // Get all teachers
   static async findAll() {
     return Teacher.findAll();
