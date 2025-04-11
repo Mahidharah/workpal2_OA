@@ -86,8 +86,9 @@ To run the application, you need Docker and Docker Compose installed on your sys
 ### 1. Clone the Repository
 
 ```bash
-git clone <repository-url>
-cd <project-folder>
+git clone [<repository-url>](https://github.com/Mahidharah/workpal2_OA.git)
+cd workpal2_OA
+cd workpal-backend
 ```
 
 ### 2. Add .env file
@@ -101,9 +102,10 @@ DB_NAME=workpal
 
 
 ### 3. Build and Start the Application with Docker Compose
-Make sure Docker is installed and running. Then, use the following command to build and start the application:
+Make sure Docker is installed and running. Then, use the following command to build and start the application (in the main directory):
 
 ```bash
+cd ..
 docker-compose up --build
 ```
 
@@ -137,10 +139,10 @@ Make sure MySQL is installed on your local machine. If it's not installed, follo
 Log into MySQL and load the test database:
 
 ```bash
-mysql -u root -p workpal_test < "path-to-"/database-workpal-test.sql
+mysql -u root -p workpal_test < "path-to-the-test-DB"/database-workpal-test.sql
 ```
 
-### 3. Add test.env File
+### 3. Add test.env File in workpal-backend folder
 It will look like
 
 ```bash
@@ -149,7 +151,7 @@ DB_USER=root
 DB_PASSWORD=yourpassword
 DB_NAME=workpal_test
 ```
-where USER and PASSWORD should be chnaged according to your mysql configuration
+where USER and PASSWORD should be changed according to your mysql configuration
 
 ### 4. Run Tests
 Now that everything is set up, run the tests:
