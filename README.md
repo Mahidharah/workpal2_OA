@@ -20,7 +20,6 @@
   - **`controllers/`**: API controllers that handle HTTP requests (e.g., `teacherController`, `studentController`).
   - **`config/`**: Configuration files (e.g., `database.js`).
   - **`routes/`**: API route definitions.
-  - **`middleware/`**: Request middleware (e.g., `authMiddleware`).
 
 - **`tests/`**: Unit and integration tests for the application.
 
